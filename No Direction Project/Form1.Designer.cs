@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblBounce = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tkbWidth = new System.Windows.Forms.TrackBar();
             this.tkbHeight = new System.Windows.Forms.TrackBar();
@@ -38,14 +38,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.tkbHeight)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // lblBounce
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(33, 28);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(138, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Number of total bounces : 0";
+            this.lblBounce.AutoSize = true;
+            this.lblBounce.Location = new System.Drawing.Point(33, 28);
+            this.lblBounce.Name = "lblBounce";
+            this.lblBounce.Size = new System.Drawing.Size(138, 13);
+            this.lblBounce.TabIndex = 1;
+            this.lblBounce.Text = "Number of total bounces : 0";
             // 
             // label2
             // 
@@ -110,7 +110,7 @@
             this.Controls.Add(this.tkbHeight);
             this.Controls.Add(this.tkbWidth);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblBounce);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.tkbWidth)).EndInit();
@@ -121,7 +121,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblBounce;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TrackBar tkbWidth;
         private System.Windows.Forms.TrackBar tkbHeight;

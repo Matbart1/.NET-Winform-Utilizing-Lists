@@ -27,6 +27,8 @@ namespace No_Direction_Project
         private int passingWidth = 1;
         private int passingHeight = 1;
 
+        public int totalBounces;
+
         public Form1()
         {
             canvas = new CDrawer(500, 500, false);
@@ -105,14 +107,21 @@ namespace No_Direction_Project
 
             // now iterate through the list of rectanges and commit the method changes
 
+            totalBounces = 0;
+
             foreach (Rectangle rec in recList)
             {
                 rec.MethodToMoveShapes(canvas);
 
                 rec.MethodToDrawShapes(canvas);
+
+                // Tally total bounces
+                totalBounces += rec.bounces;
             }
 
             canvas.Render();
+
+            lblBounce.Text = $"Total numer of bounces : {totalBounces}";
 
 
         }

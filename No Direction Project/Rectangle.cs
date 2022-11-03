@@ -45,6 +45,8 @@ namespace No_Direction_Project
             set { _coords = value; }
         }
 
+        public int bounces;
+
         public Rectangle(Point coordinateClick, int width, int height)
         {
             // this will only set values once, upon rectangle creation
@@ -61,7 +63,7 @@ namespace No_Direction_Project
         public void MethodToDrawShapes(CDrawer passedCanvas)
         {
             // create a variable rectangle from user decided values with a randomized prime color and a random border size
-            passedCanvas.AddCenteredRectangle(coords, width, height, RandColor.GetKnownColor(), rand.Next(0, 11));
+            passedCanvas.AddCenteredRectangle(coords, width, height, RandColor.GetKnownColor(), rand.Next(0, 11), blockColor);
         }
 
         public void MethodToMoveShapes(CDrawer passedCanvas)
@@ -81,24 +83,28 @@ namespace No_Direction_Project
             if (_coords.X + width < 0)
             {
                 _coords.X = width;
+                bounces++;
             }
 
             // OOB right
             if (_coords.X + width > passedCanvas.ScaledWidth)
             {
                 _coords.X = passedCanvas.ScaledWidth - width;
+                bounces++;
             }
 
             // OOB up
             if (_coords.Y + height < 0)
             {
                 _coords.Y = height;
+                bounces++;
             }
 
             // OOB down
             if (_coords.Y + height > passedCanvas.ScaledHeight)
             {
                 _coords.Y = passedCanvas.ScaledHeight - height;
+                bounces++;
             }
 
             // REMINDER: canvas is 50 x 50 grid format

@@ -16,19 +16,33 @@ namespace No_Direction_Project
         /// Lack of Git Commits?: 03/11/2022 12:32pm Clearwave Broadband Internet is DOWN
         /// so it is not possible to commit any progress to a respository
         /// 
+        /// November 18th Edit: Updating commenting / adding more background information
+        /// 
+        /// *This program uses a custom visualizer in C# called GDIDrawer created by
+        /// the amazing professors at the Northern Alberta Institute of Technology
+        /// 
         /////////////////////////////////////////////////////////////////////////////////////
 
+        // Canvas will be our visual interface for this program
         private CDrawer canvas = null;
 
+        // recList will contain our Rectangle class to edit them in real time
         List<Rectangle> recList = new List<Rectangle>();
 
+        // Timer will be used to update the canvas each tick
         Timer canvasUpdater = new Timer();
 
+        // Width and Height values for our rectangle class
         private int passingWidth = 1;
         private int passingHeight = 1;
 
+        // Fun tracking statistic
         public int totalBounces;
 
+        /// <summary>
+        /// General Form Constructor: Creates a new canvas with dimensions of 500x500 and contiuous update set to false, sets the canvas scale to 10
+        /// Initializes our timer with a tick interval of 30ms, adds event callbacks for Form_Load, Trackbar edits, Timer ticks, and Canvas clicks
+        /// </summary>
         public Form1()
         {
             canvas = new CDrawer(500, 500, false);
@@ -56,6 +70,11 @@ namespace No_Direction_Project
             canvas.MouseLeftClickScaled += Canvas_MouseLeftClickScaled;
         }
 
+        /// <summary>
+        /// Initializes the visual canvas beside our main form
+        /// </summary>
+        /// <param name="sender">null</param>
+        /// <param name="e">null</param>
         private void Form1_Load(object sender, EventArgs e)
         {
             Point canvasSpawning = new Point();
@@ -66,6 +85,11 @@ namespace No_Direction_Project
 
         }
 
+        /// <summary>
+        /// When the trackbar is edited it will update the floating height text and save the trackbar value into a height integer
+        /// </summary>
+        /// <param name="sender">null</param>
+        /// <param name="e">null</param>
         private void TkbHeight_ValueChanged(object sender, EventArgs e)
         {
             // simple trackbar variable saving + display 
@@ -73,6 +97,12 @@ namespace No_Direction_Project
             passingHeight = tkbHeight.Value;
         }
 
+
+        /// <summary>
+        /// When the trackbar is edited it will update the width floating text and save the trackbar value into a width integer
+        /// </summary>
+        /// <param name="sender">null</param>
+        /// <param name="e">null</param>
         private void TkbWidth_ValueChanged(object sender, EventArgs e)
         {
             // simple trackbar variable saving + display 
@@ -80,6 +110,12 @@ namespace No_Direction_Project
             passingWidth = tkbWidth.Value;
         }
 
+        /// <summary>
+        /// Captures a left click mouse event within the visual canvas and saves a new Rectangle class with pre-determined dimensions
+        /// at the coordinate point of the click, provided a rectangle is not currently at that point
+        /// </summary>
+        /// <param name="pos">xY coordinates of the click</param>
+        /// <param name="dr">visual canvas used</param>
         private void Canvas_MouseLeftClickScaled(System.Drawing.Point pos, CDrawer dr)
         {
             // ScaledMouseLeftClick should take into consideration the 50x50 grid we have
@@ -92,16 +128,15 @@ namespace No_Direction_Project
             }
         }
 
+        /// <summary>
+        /// Tick event will clear the visual canvas, reset the total amount of bounces to 0, iterate through the list of Rectangles
+        /// and for each rectangle, call the Rectangle.Move() method and the Rectangle.Show() method to move and redisplay each rectangle,
+        /// additionally, it will increase the total bounce metric by that rectangles local bounces, finally, render the visual canvas.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CanvasUpdater_Tick(object sender, EventArgs e)
         {
-            // Will be responsible for the population and movement of rectangles on the canvas
-
-            // Tick has occured, time to:
-            // clear the created objects...
-            // give them NEW coordinates (+1 or -1 X AND Y) <- this gets done within the class method
-            // move the 'cleared' shapes <- this gets done within the class method
-            // draw the moved shapes <- this gets done within the class method
-            // re-render the canvas
 
             canvas.Clear();
 
@@ -123,9 +158,7 @@ namespace No_Direction_Project
 
             lblBounce.Text = $"Total numer of bounces : {totalBounces}";
 
-
         }
-
 
     }
 }
